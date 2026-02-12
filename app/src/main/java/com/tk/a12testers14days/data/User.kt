@@ -6,6 +6,8 @@ data class User(
     val role: String, // "developer" or "tester"
     val displayName: String?,
     val walletBalance: Double = 0.0,
+    val trustScore: Double = 5.0,
+    val fcmToken: String? = null,
     val phoneNumber: String? = null,
     val country: String? = null,
     val deviceModel: String? = null,

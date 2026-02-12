@@ -7,8 +7,10 @@ const userSchema = new mongoose.Schema({
     displayName: String,
     phoneNumber: String,
     country: String,
-    deviceModel: String, // For testers to help developers choose
+    deviceModel: String,
     androidVersion: String,
+    fcmToken: String, // For push notifications
+    trustScore: { type: Number, default: 5.0 },
     walletBalance: { type: Number, default: 0 },
     appsBeingTested: [{ type: mongoose.Schema.Types.ObjectId, ref: 'App' }],
     createdAt: { type: Date, default: Date.now }

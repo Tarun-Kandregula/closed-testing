@@ -2,14 +2,21 @@ package com.tk.a12testers14days.data.remote
 
 data class BugDto(
     val _id: String,
-    val appId: String,
-    val testerId: UserDto?, // Expected UserDto object
+    val appId: BugAppDto, // Changed to object to match populated response
+    val testerId: UserDto?,
     val title: String,
     val description: String?,
-    val status: String, // 'open', 'resolved'
+    val status: String,
     val developerReply: String?,
     val createdAt: String,
     val chat: List<ChatMessageDto>? = emptyList()
+)
+
+data class BugAppDto(
+    val _id: String,
+    val appName: String,
+    val icon: String?,
+    val packageId: String?
 )
 
 data class ChatMessageDto(
@@ -32,5 +39,7 @@ data class CreateBugRequest(
 )
 
 data class ChatRequest(
-    val message: String
+    val message: String,
+    val senderRole: String,
+    val senderName: String
 )

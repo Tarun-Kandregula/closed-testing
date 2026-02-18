@@ -62,7 +62,20 @@ const bugRoutes = require('./routes/bugRoutes');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/apps', appRoutes);
-app.use('/api/bugs', bugRoutes);
+
+// Log all requests to /api/bugs to debug
+app.use('/api/bugs', (req, res, next) => {
+    const logMsg = `[DEBUG GLOBAL] ${req.method} ${req.originalUrl}\n`;
+    console.log(logMsg.trim());
+    require('fs').appendFileSync('debug.log', logMsg);
+    next();
+}, bugRoutes);
+
+// 404 Handler for API routes
+app.use('/api', (req, res) => {
+    console.log(`[DEBUG 404] Route not found: ${req.method} ${req.originalUrl}`);
+    res.status(404).json({ message: "API Route not found" });
+});
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

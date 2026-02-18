@@ -78,9 +78,9 @@
           "_id": "699185190a5e2578169833a9"
         }
       ],
+      "startedAt": "2026-02-18T13:47:37.216Z",
       "createdAt": "2026-02-15T07:16:16.820Z",
-      "__v": 0,
-      "startedAt": "2026-02-18T13:47:37.216Z"
+      "__v": 0
     },
     {
       "_id": "6995d03b0d0b5c1f8035bfcd",
@@ -104,7 +104,7 @@
         }
       ],
       "createdAt": "2026-02-18T14:44:11.559Z",
-      "__v": 1
+      "__v": 0
     },
     {
       "_id": "6995d0a90d0b5c1f8035c07e",
@@ -127,9 +127,34 @@
           "_id": "6995d0bb0d0b5c1f8035c0a6"
         }
       ],
+      "startedAt": "2026-02-18T14:47:39.673Z",
       "createdAt": "2026-02-18T14:46:01.740Z",
-      "__v": 1,
-      "startedAt": "2026-02-18T14:47:39.673Z"
+      "__v": 0
+    },
+    {
+      "_id": "6996009055adaecfaafd1e30",
+      "developerId": "699157143434e15efdf51935",
+      "appName": "sod",
+      "packageName": "com.fjif",
+      "appVersion": "1.0",
+      "appDescription": "ndjdj",
+      "closedTestingLink": "djjdjdj",
+      "paymentAmount": 399,
+      "maxTesters": 1,
+      "durationDays": 15,
+      "status": "testing",
+      "optedInTesters": [
+        {
+          "testerId": "699157363434e15efdf51945",
+          "optedInAt": "2026-02-18T18:10:46.921Z",
+          "daysCompleted": 0,
+          "completed": false,
+          "_id": "699600a655adaecfaafd1e91"
+        }
+      ],
+      "startedAt": "2026-02-18T18:11:10.288Z",
+      "createdAt": "2026-02-18T18:10:24.383Z",
+      "__v": 0
     }
   ],
   "bugs": [
@@ -140,6 +165,7 @@
       "title": "test",
       "description": "test",
       "status": "open",
+      "chat": [],
       "createdAt": "2026-02-18T11:13:45.168Z",
       "__v": 0
     },
@@ -150,6 +176,7 @@
       "title": "test",
       "description": "test",
       "status": "open",
+      "chat": [],
       "createdAt": "2026-02-18T11:30:06.799Z",
       "__v": 0
     },
@@ -160,10 +187,246 @@
       "title": "bugs",
       "description": "bugs",
       "status": "open",
+      "chat": [],
       "createdAt": "2026-02-18T12:38:19.108Z",
+      "__v": 0
+    },
+    {
+      "_id": "6995d8590d0b5c1f8035c5e3",
+      "appId": "6995d0a90d0b5c1f8035c07e",
+      "testerId": "699157363434e15efdf51945",
+      "title": "bas",
+      "description": "hdjd",
+      "status": "open",
+      "chat": [],
+      "createdAt": "2026-02-18T15:18:49.262Z",
+      "__v": 0
+    },
+    {
+      "_id": "6995edc70d0b5c1f8035cd94",
+      "appId": "6995d0a90d0b5c1f8035c07e",
+      "testerId": "699157363434e15efdf51945",
+      "title": "hello",
+      "description": "hello",
+      "status": "open",
+      "chat": [],
+      "createdAt": "2026-02-18T16:50:15.542Z",
+      "__v": 0
+    },
+    {
+      "_id": "6995f0590d0b5c1f8035cfef",
+      "appId": "6995d0a90d0b5c1f8035c07e",
+      "testerId": "699157363434e15efdf51945",
+      "title": "teo",
+      "description": "tek",
+      "status": "open",
+      "chat": [],
+      "createdAt": "2026-02-18T17:01:13.858Z",
+      "__v": 0
+    },
+    {
+      "_id": "6995f22b66fdbdc240e22c6b",
+      "appId": "6995d0a90d0b5c1f8035c07e",
+      "testerId": "699157363434e15efdf51945",
+      "title": "hhh",
+      "description": "jjh",
+      "status": "open",
+      "chat": [
+        {
+          "senderId": "699157363434e15efdf51945",
+          "senderRole": "tester",
+          "senderName": "Test user",
+          "message": "bcbx",
+          "timestamp": "2026-02-18T17:09:09.716Z",
+          "_id": "6995f23566fdbdc240e22c8c"
+        },
+        {
+          "senderId": "699157363434e15efdf51945",
+          "senderRole": "tester",
+          "senderName": "Test user",
+          "message": "bcbx",
+          "timestamp": "2026-02-18T17:09:40.234Z",
+          "_id": "6995f25466fdbdc240e22cab"
+        },
+        {
+          "senderId": "699157363434e15efdf51945",
+          "senderRole": "tester",
+          "senderName": "Test user",
+          "message": "bcbx",
+          "timestamp": "2026-02-18T17:09:45.859Z",
+          "_id": "6995f25966fdbdc240e22cb0"
+        },
+        {
+          "senderId": "699157363434e15efdf51945",
+          "senderRole": "tester",
+          "senderName": "Test user",
+          "message": "bcbx",
+          "timestamp": "2026-02-18T17:10:23.481Z",
+          "_id": "6995f27f66fdbdc240e22ce2"
+        }
+      ],
+      "createdAt": "2026-02-18T17:08:59.186Z",
+      "__v": 0
+    },
+    {
+      "_id": "6995f44666fdbdc240e22f43",
+      "appId": "699157493434e15efdf51951",
+      "testerId": "699157363434e15efdf51945",
+      "title": "test",
+      "description": "tets",
+      "status": "open",
+      "chat": [
+        {
+          "senderId": "699157363434e15efdf51945",
+          "senderRole": "tester",
+          "senderName": "Test user",
+          "message": "bxbx",
+          "timestamp": "2026-02-18T17:18:04.555Z",
+          "_id": "6995f44c66fdbdc240e22f64"
+        }
+      ],
+      "createdAt": "2026-02-18T17:17:58.198Z",
+      "__v": 0
+    },
+    {
+      "_id": "6995fd8566fdbdc240e23c0e",
+      "appId": "6995d0a90d0b5c1f8035c07e",
+      "testerId": "699157363434e15efdf51945",
+      "title": "bdhd",
+      "description": "dbhdh",
+      "status": "open",
+      "chat": [],
+      "createdAt": "2026-02-18T17:57:25.802Z",
+      "__v": 0
+    },
+    {
+      "_id": "6995fdd766fdbdc240e23d4c",
+      "appId": "6995d0a90d0b5c1f8035c07e",
+      "testerId": "699157363434e15efdf51945",
+      "title": "ccc",
+      "description": "ufjf",
+      "status": "open",
+      "chat": [],
+      "createdAt": "2026-02-18T17:58:47.432Z",
+      "__v": 0
+    },
+    {
+      "_id": "6995fe9566fdbdc240e23e84",
+      "appId": "699157493434e15efdf51951",
+      "testerId": "699157363434e15efdf51945",
+      "title": "jdjf",
+      "description": "djdu",
+      "status": "open",
+      "chat": [],
+      "createdAt": "2026-02-18T18:01:57.040Z",
+      "__v": 0
+    },
+    {
+      "_id": "699600d155adaecfaafd1f37",
+      "appId": "6996009055adaecfaafd1e30",
+      "testerId": "699157363434e15efdf51945",
+      "title": "ddhj",
+      "description": "hdbx",
+      "status": "open",
+      "chat": [
+        {
+          "senderId": "699157363434e15efdf51945",
+          "senderRole": "tester",
+          "senderName": "Test user",
+          "message": "help",
+          "timestamp": "2026-02-18T18:13:50.135Z",
+          "_id": "6996015e55adaecfaafd204e"
+        },
+        {
+          "senderId": "699157363434e15efdf51945",
+          "senderRole": "tester",
+          "senderName": "Test user",
+          "message": "help",
+          "timestamp": "2026-02-18T18:13:51.759Z",
+          "_id": "6996015f55adaecfaafd2056"
+        }
+      ],
+      "createdAt": "2026-02-18T18:11:29.567Z",
+      "__v": 0
+    },
+    {
+      "_id": "6996024253e7f7384c252ff7",
+      "appId": "699157493434e15efdf51951",
+      "testerId": "699157363434e15efdf51945",
+      "title": "ndjd",
+      "description": "fjjdj",
+      "status": "open",
+      "chat": [],
+      "createdAt": "2026-02-18T18:17:38.092Z",
+      "__v": 0
+    },
+    {
+      "_id": "6996024353e7f7384c252ffb",
+      "appId": "699157493434e15efdf51951",
+      "testerId": "699157363434e15efdf51945",
+      "title": "ndjd",
+      "description": "fjjdj",
+      "status": "open",
+      "chat": [],
+      "createdAt": "2026-02-18T18:17:39.513Z",
+      "__v": 0
+    },
+    {
+      "_id": "6996024353e7f7384c252fff",
+      "appId": "699157493434e15efdf51951",
+      "testerId": "699157363434e15efdf51945",
+      "title": "ndjd",
+      "description": "fjjdj",
+      "status": "open",
+      "chat": [],
+      "createdAt": "2026-02-18T18:17:39.806Z",
+      "__v": 0
+    },
+    {
+      "_id": "6996024453e7f7384c253003",
+      "appId": "699157493434e15efdf51951",
+      "testerId": "699157363434e15efdf51945",
+      "title": "ndjd",
+      "description": "fjjdj",
+      "status": "open",
+      "chat": [],
+      "createdAt": "2026-02-18T18:17:40.286Z",
+      "__v": 0
+    },
+    {
+      "_id": "6996024453e7f7384c253007",
+      "appId": "699157493434e15efdf51951",
+      "testerId": "699157363434e15efdf51945",
+      "title": "ndjd",
+      "description": "fjjdj",
+      "status": "open",
+      "chat": [],
+      "createdAt": "2026-02-18T18:17:40.592Z",
+      "__v": 0
+    },
+    {
+      "_id": "6996024553e7f7384c25300b",
+      "appId": "699157493434e15efdf51951",
+      "testerId": "699157363434e15efdf51945",
+      "title": "ndjd",
+      "description": "fjjdj",
+      "status": "open",
+      "chat": [],
+      "createdAt": "2026-02-18T18:17:41.138Z",
+      "__v": 0
+    },
+    {
+      "_id": "6996024553e7f7384c25300f",
+      "appId": "699157493434e15efdf51951",
+      "testerId": "699157363434e15efdf51945",
+      "title": "ndjd",
+      "description": "fjjdj",
+      "status": "open",
+      "chat": [],
+      "createdAt": "2026-02-18T18:17:41.367Z",
       "__v": 0
     }
   ],
   "transactions": [],
-  "timestamp": "2026-02-18T14:54:04.611Z"
+  "timestamp": "2026-02-18T18:23:17.480Z"
 }

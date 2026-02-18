@@ -51,7 +51,7 @@ interface ApiService {
     suspend fun getMyBugs(@Header("Authorization") token: String): List<BugDto>
 
     @POST("bugs/{id}/chat")
-    suspend fun sendChat(@Header("Authorization") token: String, @Path("id") bugId: String, @Body request: ChatRequest): BugDto
+    suspend fun sendChat(@Header("Authorization") token: String, @Path("id") bugId: String, @Body request: ChatRequest): okhttp3.ResponseBody
 }
 
 // Auth Data Classes
@@ -111,3 +111,4 @@ data class SubmitAppResponse(val success: Boolean, val message: String, val app:
 data class CheckInRequest(val appId: String, val installedPackageName: String)
 data class CheckInResponse(val success: Boolean, val message: String, val daysCompleted: Int)
 data class GenericResponse(val success: Boolean, val message: String)
+

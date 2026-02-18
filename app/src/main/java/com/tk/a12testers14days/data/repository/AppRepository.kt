@@ -51,7 +51,7 @@ class AppRepository(private val api: ApiService) {
         api.getMyBugs("Bearer $token")
     }
 
-    suspend fun sendChat(token: String, bugId: String, message: String) = runCatching {
-        api.sendChat("Bearer $token", bugId, com.tk.a12testers14days.data.remote.ChatRequest(message))
+    suspend fun sendChat(token: String, bugId: String, message: String, senderRole: String, senderName: String) = runCatching {
+        api.sendChat("Bearer $token", bugId, com.tk.a12testers14days.data.remote.ChatRequest(message, senderRole, senderName))
     }
 }

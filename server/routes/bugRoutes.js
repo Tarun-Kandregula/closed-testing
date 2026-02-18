@@ -62,6 +62,8 @@ router.get('/app/:appId', auth, async (req, res) => {
 
         const bugs = await Bug.find({ appId })
             .populate('testerId', 'displayName email') // Populate tester details
+            .populate('appId', 'appName icon packageId') // Populate app details for Android DTO
+            .populate('chat.senderId', 'displayName email role') // Populate chat sender details
             .sort({ createdAt: -1 });
 
         res.json(bugs);
@@ -79,6 +81,7 @@ router.get('/my-reports', auth, async (req, res) => {
         const userId = req.user.id;
         const bugs = await Bug.find({ testerId: userId })
             .populate('appId', 'appName icon packageId') // Populate app details
+            .populate('chat.senderId', 'displayName email role') // Populate chat sender details
             .sort({ createdAt: -1 });
 
         res.json(bugs);
@@ -141,6 +144,55 @@ router.put('/:id/resolve', auth, async (req, res) => {
     } catch (error) {
         console.error('Error resolving bug:', error);
         res.status(500).json({ message: 'Server error resolving bug', error: error.message });
+    }
+});
+
+// @route   POST /api/bugs/:id/chat
+// @desc    Add a chat message to a bug report
+// @access  Private (Tester/Developer)
+router.post('/:id/chat', auth, async (req, res) => {
+    try {
+        const { message, senderRole, senderName } = req.body;
+        const bugId = req.params.id;
+        const userId = req.user.id; // User ID from auth middleware
+
+        console.log(`[DEBUG] POST /api/bugs/${bugId}/chat`);
+        console.log(`[DEBUG] Body:`, req.body);
+        console.log(`[DEBUG] UserID:`, userId);
+
+        const bug = await Bug.findById(bugId);
+        if (!bug) {
+            console.log(`[DEBUG] Bug not found for ID: ${bugId}`);
+            return res.status(404).json({ message: 'Bug not found' });
+        }
+
+        // Create chat message object
+        const newChat = {
+            senderId: userId,
+            senderRole: senderRole || 'tester', // Default to tester if not provided
+            senderName: senderName || 'Unknown',
+            message,
+            timestamp: Date.now()
+        };
+
+        // Add to chat array
+        bug.chat.push(newChat);
+
+        // Update updated_at timestamp
+        bug.updated_at = Date.now();
+
+        await bug.save();
+
+        // Populate the chat senders (optional, but good for consistency)
+        // awaut bug.populate('chat.senderId', 'displayName email');
+
+        // Populate appId to match Android DTO requirements
+        await bug.populate('appId', 'appName icon packageId');
+
+        res.json(bug);
+    } catch (error) {
+        console.error('Error sending chat message:', error);
+        res.status(500).json({ message: 'Server error sending message', error: error.message });
     }
 });
 

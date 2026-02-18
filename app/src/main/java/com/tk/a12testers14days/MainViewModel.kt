@@ -6,6 +6,7 @@ import com.tk.a12testers14days.data.remote.AppDto
 import com.tk.a12testers14days.data.repository.AppRepository
 import com.tk.a12testers14days.data.repository.AuthRepository
 import com.tk.a12testers14days.data.remote.BugDto
+import okhttp3.ResponseBody
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -99,9 +100,11 @@ class MainViewModel(
                 .onSuccess { bugs ->
                     _appBugs.value = bugs
                 }
-                .onFailure {
-                    // Handle error silently
+                .onFailure { e ->
+                    // Handle error silently, but log it
+                    android.util.Log.e("MainViewModel", "Failed to load bugs for app $appId", e)
                     _appBugs.value = emptyList()
+                    _toastMessage.value = "Failed to load bugs: ${e.toString()}"
                 }
         }
     }
@@ -115,6 +118,12 @@ class MainViewModel(
             val appId = _bugReportAppId.value
             if (appId != null) {
                 // Ensure selected app is still valid or reload it if needed (it should be)
+                if (_selectedApp.value == null) {
+                    val app = _missions.value.find { it.id == appId }
+                    if (app != null) {
+                        _selectedApp.value = app
+                    }
+                }
                 _currentScreen.value = Screen.AppDetails
                 loadAppBugs(appId)
             } else {
@@ -177,22 +186,51 @@ class MainViewModel(
 
         viewModelScope.launch {
             val token = authRepository.getToken() ?: return@launch
-            appRepository.sendChat(token, bug._id, message)
-                .onSuccess { updatedBug ->
-                    _selectedBug.value = updatedBug
-                    _chatInput.value = ""
+            val user = authRepository.getUser()
+            val senderName = user?.displayName ?: "Unknown"
+            val senderRole = user?.role ?: "tester"
+
+            appRepository.sendChat(token, bug._id, message, senderRole, senderName)
+                .onSuccess { responseBody ->
+                    val response = responseBody as ResponseBody
+                    val responseString = response.string()
+                    android.util.Log.d("MainViewModel", "Chat Response: $responseString")
                     
-                    // Also update the bug in the list if present
-                    val currentList = _appBugs.value.toMutableList()
-                    val index = currentList.indexOfFirst { it._id == updatedBug._id } // Using _id from backend
-                    if (index != -1) {
-                        currentList[index] = updatedBug
-                        _appBugs.value = currentList
+                    try {
+                        // Manually parse if it is JSON
+                        val gson = com.google.gson.Gson()
+                        val updatedBug: BugDto = gson.fromJson(responseString, BugDto::class.java)
+                        
+                        _selectedBug.value = updatedBug
+                        _chatInput.value = ""
+                        
+                        // Also update the bug in the list if present
+                        val currentList = _appBugs.value.toMutableList()
+                        val index = currentList.indexOfFirst { it._id == updatedBug._id }
+                        if (index != -1) {
+                            currentList[index] = updatedBug
+                            _appBugs.value = currentList
+                        }
+                    } catch (e: Exception) {
+                         android.util.Log.e("MainViewModel", "Failed to parse chat response: $responseString", e)
+                         _toastMessage.value = "Sent, but response was: $responseString"
+                         loadAppBugs(bug.appId._id)
                     }
                 }
                 .onFailure { e ->
-                    android.util.Log.e("MainViewModel", "Error sending chat", e)
-                    _toastMessage.value = "Failed to send message: ${e.message}"
+                    // ... existing failure handling ...
+                    val errorMessage = if (e is retrofit2.HttpException) {
+                         try {
+                             val errorBody = e.response()?.errorBody()?.string()
+                             "HTTP ${e.code()}: $errorBody"
+                         } catch (ex: Exception) {
+                             "HTTP ${e.code()}: ${e.message()}"
+                         }
+                     } else {
+                         e.message ?: "Unknown error"
+                     }
+                     android.util.Log.e("MainViewModel", "Error sending chat: $errorMessage", e)
+                     _toastMessage.value = "Failed: $errorMessage"
                 }
         }
     }

@@ -304,7 +304,9 @@ fun MainScreen(
                     BackHandler { viewModel.navigateBack() }
                     
                     val selectedApp by viewModel.selectedApp.collectAsState()
-                    selectedApp?.let { app ->
+                    
+                    if (selectedApp != null) {
+                        val app = selectedApp!!
                         val testerVm: com.tk.a12testers14days.TesterViewModel = koinViewModel()
                         val developerVm: com.tk.a12testers14days.DeveloperViewModel = koinViewModel()
                         val bugs by viewModel.appBugs.collectAsState()
@@ -328,6 +330,11 @@ fun MainScreen(
                             bugs = bugs,
                             onBugClick = { bug -> viewModel.navigateToBugDetails(bug) }
                         )
+                    } else {
+                        // If selectedApp is null (restoration failed?), go back to dashboard
+                         LaunchedEffect(Unit) {
+                             viewModel.navigateBack()
+                         }
                     }
                 }
                 Screen.BugDetails -> {
@@ -345,6 +352,7 @@ fun MainScreen(
                     }
                 }
                 Screen.ReportBug -> {
+                    BackHandler { viewModel.navigateBack() }
                     val appId by viewModel.bugReportAppId.collectAsState()
                     val appName by viewModel.bugReportAppName.collectAsState()
 

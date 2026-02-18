@@ -9,7 +9,8 @@ const bugSchema = new mongoose.Schema({
     developerReply: String,
     chat: [{
         senderId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-        role: { type: String, required: true },
+        senderRole: { type: String, required: true },
+        senderName: { type: String, required: true },
         message: { type: String, required: true },
         timestamp: { type: Date, default: Date.now }
     }],

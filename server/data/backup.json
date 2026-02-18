@@ -1,0 +1,169 @@
+{
+  "users": [
+    {
+      "_id": "699157143434e15efdf51935",
+      "email": "tarunofficial10@gmail.com",
+      "password": "$2b$10$QXEIASmv0lNH53UA5X5NUOADf3DgbvqFlersOvVjav5NTNKF9xPGG",
+      "role": "developer",
+      "displayName": "Tarun Developer",
+      "walletBalance": 0,
+      "appsUploaded": [],
+      "deviceModel": "Web Browser",
+      "trustScore": 100,
+      "appsOptedIn": [],
+      "activeTests": 0,
+      "createdAt": "2026-02-15T05:18:12.310Z",
+      "__v": 0
+    },
+    {
+      "_id": "699157363434e15efdf51945",
+      "email": "tarunofficial11@gmail.com",
+      "password": "$2b$10$VmazKwjHYh0sGzPM7s8OHO/5rbZH4TYkbsm/ADH2Gcx1YVEesyEuW",
+      "role": "tester",
+      "displayName": "Test user",
+      "walletBalance": 0,
+      "appsUploaded": [],
+      "deviceModel": "Web Browser",
+      "trustScore": 100,
+      "appsOptedIn": [],
+      "activeTests": 0,
+      "createdAt": "2026-02-15T05:18:46.414Z",
+      "__v": 0
+    }
+  ],
+  "apps": [
+    {
+      "_id": "699157493434e15efdf51951",
+      "developerId": "699157143434e15efdf51935",
+      "appName": "test",
+      "packageName": "com.example.test",
+      "appVersion": "1.0.0",
+      "appDescription": "test",
+      "closedTestingLink": "https://play.google.com/apps/internaltest/12345",
+      "paymentAmount": 399,
+      "maxTesters": 1,
+      "durationDays": 15,
+      "status": "testing",
+      "optedInTesters": [
+        {
+          "testerId": "699157363434e15efdf51945",
+          "optedInAt": "2026-02-15T05:19:17.268Z",
+          "daysCompleted": 0,
+          "completed": false,
+          "_id": "699157553434e15efdf5195e"
+        }
+      ],
+      "startedAt": "2026-02-15T05:19:58.468Z",
+      "createdAt": "2026-02-15T05:19:05.552Z",
+      "__v": 0
+    },
+    {
+      "_id": "699172c0cefc7c846bec1ec8",
+      "developerId": "699157143434e15efdf51935",
+      "appName": "test 2",
+      "packageName": "com.example.tk",
+      "appVersion": "1.0",
+      "appDescription": "hdjdgdjndn",
+      "closedTestingLink": "hdjdjdj",
+      "paymentAmount": 399,
+      "maxTesters": 1,
+      "durationDays": 15,
+      "status": "testing",
+      "optedInTesters": [
+        {
+          "testerId": "699157363434e15efdf51945",
+          "optedInAt": "2026-02-15T08:34:33.818Z",
+          "daysCompleted": 0,
+          "completed": false,
+          "_id": "699185190a5e2578169833a9"
+        }
+      ],
+      "createdAt": "2026-02-15T07:16:16.820Z",
+      "__v": 0,
+      "startedAt": "2026-02-18T13:47:37.216Z"
+    },
+    {
+      "_id": "6995d03b0d0b5c1f8035bfcd",
+      "developerId": "699157143434e15efdf51935",
+      "appName": "Split wise",
+      "packageName": "com.splitwise.app",
+      "appVersion": "1.0.0",
+      "appDescription": "test",
+      "closedTestingLink": "EgZjaHJvbWUqDwgBECMYJxjqAhiABBiKBTIPCAAQIxgnGOoCGIAEGIoFMg8IARAjGCcY6gIYgAQYigUyDwgCECMYJxjqAhiABBiKBTIPCAMQIxgnGOoCGIAEGIoFMg8IBBAjGCcY6gIYgAQYigUyDwgFECMYJxjqAhiABBiKBTIPCAYQIxgnGOoCGIAEGIoFMgkIBxBFGDsYwgPSAQs5MzQ5Mzk5ajBqN6gCCLACAfEFp2wAm2VEcQg",
+      "paymentAmount": 399,
+      "maxTesters": 20,
+      "durationDays": 15,
+      "status": "opt_in_period",
+      "optedInTesters": [
+        {
+          "testerId": "699157363434e15efdf51945",
+          "optedInAt": "2026-02-18T14:44:41.118Z",
+          "daysCompleted": 0,
+          "completed": false,
+          "_id": "6995d0590d0b5c1f8035c001"
+        }
+      ],
+      "createdAt": "2026-02-18T14:44:11.559Z",
+      "__v": 1
+    },
+    {
+      "_id": "6995d0a90d0b5c1f8035c07e",
+      "developerId": "699157143434e15efdf51935",
+      "appName": "Split wise 2",
+      "packageName": "com.splitwise.app",
+      "appVersion": "1.0.0",
+      "appDescription": "test",
+      "closedTestingLink": "EgZjaHJvbWUqDwgBECMYJxjqAhiABBiKBTIPCAAQIxgnGOoCGIAEGIoFMg8IARAjGCcY6gIYgAQYigUyDwgCECMYJxjqAhiABBiKBTIPCAMQIxgnGOoCGIAEGIoFMg8IBBAjGCcY6gIYgAQYigUyDwgFECMYJxjqAhiABBiKBTIPCAYQIxgnGOoCGIAEGIoFMgkIBxBFGDsYwgPSAQs5MzQ5Mzk5ajBqN6gCCLACAfEFp2wAm2VEcQg",
+      "paymentAmount": 399,
+      "maxTesters": 1,
+      "durationDays": 15,
+      "status": "testing",
+      "optedInTesters": [
+        {
+          "testerId": "699157363434e15efdf51945",
+          "optedInAt": "2026-02-18T14:46:19.939Z",
+          "daysCompleted": 0,
+          "completed": false,
+          "_id": "6995d0bb0d0b5c1f8035c0a6"
+        }
+      ],
+      "createdAt": "2026-02-18T14:46:01.740Z",
+      "__v": 1,
+      "startedAt": "2026-02-18T14:47:39.673Z"
+    }
+  ],
+  "bugs": [
+    {
+      "_id": "69959ee9b9fecf3fbd1c1905",
+      "appId": "699157493434e15efdf51951",
+      "testerId": "699157363434e15efdf51945",
+      "title": "test",
+      "description": "test",
+      "status": "open",
+      "createdAt": "2026-02-18T11:13:45.168Z",
+      "__v": 0
+    },
+    {
+      "_id": "6995a2beb9fecf3fbd1c1b96",
+      "appId": "699157493434e15efdf51951",
+      "testerId": "699157363434e15efdf51945",
+      "title": "test",
+      "description": "test",
+      "status": "open",
+      "createdAt": "2026-02-18T11:30:06.799Z",
+      "__v": 0
+    },
+    {
+      "_id": "6995b2bb0d0b5c1f8035acf5",
+      "appId": "699157493434e15efdf51951",
+      "testerId": "699157363434e15efdf51945",
+      "title": "bugs",
+      "description": "bugs",
+      "status": "open",
+      "createdAt": "2026-02-18T12:38:19.108Z",
+      "__v": 0
+    }
+  ],
+  "transactions": [],
+  "timestamp": "2026-02-18T14:53:14.609Z"
+}

@@ -1,4 +1,4 @@
-# TwelveTesters (12 Testers 14 Days Solution)
+# Closed testing community (12 Testers 14 Days Solution)
 ## Project Specification & Technical Roadmap
 
 TwelveTesters is a **Marketplace-as-a-Service (MaaS)** designed to help Android developers bypass the "20 Testers / 14 Days" hurdle for Google Play Store Production access. It connects developers with a verified pool of testers through a Peer-to-Peer (P2P) and Paid testing model.

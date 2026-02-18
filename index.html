@@ -1,75 +1,718 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>12 Testers | Play Store Solutions</title>
+    <title>Closed testing community | Play Store Solutions</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
-    <div class="container">
-        <!-- Navigation -->
-        <nav class="nav-bar">
-            <div class="logo">12<span>Testers</span></div>
-            <div id="user-info" class="text-dim">Not Logged In</div>
+    <!-- App Container with Grid Layout -->
+    <div class="app-container before-login" id="app-container">
+
+        <!-- Top App Bar -->
+        <div class="top-bar">
+            <div class="top-bar-left">
+                <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Toggle navigation">
+                    <i data-lucide="menu" style="width: 20px; height: 20px;"></i>
+                </button>
+                <h1 class="page-title" id="page-title"></h1>
+            </div>
+
+            <div class="top-bar-right" id="top-bar-actions">
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                    <i id="theme-icon" data-lucide="moon" style="width: 20px; height: 20px;"></i>
+                </button>
+
+                <div class="user-menu" id="user-menu-container" style="display: none;">
+                    <div class="user-avatar" id="user-avatar">U</div>
+                    <span class="user-name" id="user-display-name">User</span>
+                </div>
+
+                <button class="logout-btn" id="logout-btn" onclick="logout()" style="display: none;">
+                    Logout
+                </button>
+            </div>
+        </div>
+
+        <!-- Left Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <img src="logo_white.png" class="logo-white" style="height: 32px; width: auto;" alt="Logo">
+                <img src="logo_black.png" class="logo-black" style="height: 32px; width: auto;" alt="Logo">
+                <span class="sidebar-logo-text">Closed Testing</span>
+            </div>
+
+
+            <!-- Developer Navigation -->
+            <div id="dev-nav" class="nav-menu" style="display: none;">
+                <div class="nav-section">
+                    <div class="nav-section-title">Menu</div>
+                    <div class="nav-item active" onclick="navigateTo('my-apps')" data-page="my-apps">
+                        <i data-lucide="app-window" style="width: 20px; height: 20px;"></i>
+                        <span>My Apps</span>
+                    </div>
+                    <div class="nav-item" onclick="navigateTo('add-app')" data-page="add-app">
+                        <i data-lucide="plus-circle" style="width: 20px; height: 20px;"></i>
+                        <span>Add New App</span>
+                    </div>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Analytics</div>
+                    <div class="nav-item" onclick="navigateTo('analytics')" data-page="analytics">
+                        <i data-lucide="bar-chart-3" style="width: 20px; height: 20px;"></i>
+                        <span>Dashboard</span>
+                    </div>
+                    <div class="nav-item" onclick="navigateTo('wallet')" data-page="wallet">
+                        <i data-lucide="wallet" style="width: 20px; height: 20px;"></i>
+                        <span>Wallet</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tester Navigation -->
+            <div id="tester-nav" class="nav-menu" style="display: none;">
+                <div class="nav-section">
+                    <div class="nav-section-title">Testing</div>
+                    <div class="nav-item active" onclick="navigateTo('my-tests')" data-page="my-tests">
+                        <i data-lucide="clipboard-check" style="width: 20px; height: 20px;"></i>
+                        <span>My Tests</span>
+                    </div>
+                    <div class="nav-item" onclick="navigateTo('browse-apps')" data-page="browse-apps">
+                        <i data-lucide="search" style="width: 20px; height: 20px;"></i>
+                        <span>Browse Apps</span>
+                    </div>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Account</div>
+                    <div class="nav-item" onclick="navigateTo('wallet')" data-page="wallet">
+                        <i data-lucide="wallet" style="width: 20px; height: 20px;"></i>
+                        <span>Wallet</span>
+                    </div>
+                    <div class="nav-item" onclick="navigateTo('stats')" data-page="stats">
+                        <i data-lucide="trending-up" style="width: 20px; height: 20px;"></i>
+                        <span>Stats</span>
+                    </div>
+                </div>
+            </div>
         </nav>
 
-        <!-- Role Selection Screen (Initial) -->
-        <section id="role-selection" class="fade-in">
-            <div style="text-align: center; margin-bottom: 4rem;">
-                <h1>Welcome to the Future of App Testing</h1>
-                <p class="text-dim">Select your path to continue</p>
-            </div>
-            
-            <div class="role-container">
-                <div class="glass-card role-card" onclick="selectRole('developer')">
-                    <i data-lucide="code-2" style="color: var(--primary);"></i>
-                    <h3>I am a Developer</h3>
-                    <p class="text-dim">I want my app to be tested and reach production.</p>
-                </div>
-                <div class="glass-card role-card" onclick="selectRole('tester')">
-                    <i data-lucide="shield-check" style="color: var(--secondary);"></i>
-                    <h3>I am a Tester</h3>
-                    <p class="text-dim">I want to test apps and earn rewards.</p>
-                </div>
-            </div>
-        </section>
+        <!-- Main Content Area -->
+        <main class="main-content" id="main-content">
 
-        <!-- Developer Dashboard -->
-        <section id="dev-dashboard" class="hidden fade-in">
-            <div class="nav-bar">
-                <h2>Developer Dashboard</h2>
-                <button class="btn btn-primary" onclick="showAppForm()">+ Add New App</button>
-            </div>
-            
-            <div id="dev-apps" class="grid-layout">
-                <!-- App cards will be injected here -->
-                <div class="glass-card" style="padding: 2rem; text-align: center; border-style: dashed;">
-                    <p class="text-dim">You haven't submitted any apps yet.</p>
-                </div>
-            </div>
-        </section>
+            <!-- Landing / Login Screen (Before Auth) -->
+            <section id="landing-screen" class="fade-in">
+                <div style="text-align: center; max-width: 600px; margin: 4rem auto;">
+                    <div style="margin-bottom: 2rem;">
+                        <div
+                            style="margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center;">
+                            <img src="logo_white.png" class="app-logo logo-white" alt="Closed testing community Logo">
+                            <img src="logo_black.png" class="app-logo logo-black" alt="Closed testing community Logo">
+                        </div>
+                        <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Welcome to Closed testing community</h1>
+                        <p class="text-dim" style="font-size: 1.125rem; margin-bottom: 2rem;">Your gateway to
+                            professional app testing</p>
+                    </div>
 
-        <!-- Tester Dashboard -->
-        <section id="tester-dashboard" class="hidden fade-in">
-            <div class="nav-bar">
-                <h2>Tester Portal</h2>
-                <div class="glass-card" style="padding: 0.5rem 1rem;">
-                    <span class="text-dim">Wallet:</span> <span style="color: var(--success); font-weight: bold;">₹0.00</span>
+                    <div
+                        style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
+                        <div class="glass-card" style="padding: 2rem; cursor: pointer;"
+                            onclick="selectRole('developer')">
+                            <i data-lucide="code-2"
+                                style="width: 48px; height: 48px; color: var(--primary); margin-bottom: 1rem;"></i>
+                            <h3 style="margin-bottom: 0.5rem;">Developer</h3>
+                            <p class="text-dim" style="font-size: 0.875rem;">Get your app tested by real users</p>
+                        </div>
+                        <div class="glass-card" style="padding: 2rem; cursor: pointer;" onclick="selectRole('tester')">
+                            <i data-lucide="shield-check"
+                                style="width: 48px; height: 48px; color: var(--secondary); margin-bottom: 1rem;"></i>
+                            <h3 style="margin-bottom: 0.5rem;">Tester</h3>
+                            <p class="text-dim" style="font-size: 0.875rem;">Test apps and earn rewards</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Developer Dashboard -->
+            <section id="dev-dashboard" class="hidden fade-in">
+                <!-- App List View -->
+                <div id="app-list-view">
+                    <div class="glass-card" style="margin-top: 2rem; overflow-x: auto;">
+                        <table class="data-table" id="dev-apps-table">
+                            <thead>
+                                <tr>
+                                    <th>App Name</th>
+                                    <th>Version</th>
+                                    <th>Status</th>
+                                    <th>Progress</th>
+                                    <th>Testers</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dev-apps-body">
+                                <!-- App rows will be injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Edit App View (Full Screen) -->
+            <section id="edit-app-view" class="hidden fade-in" style="height: 100%; padding-bottom: 3rem;">
+                <div style="width: 100%;">
+
+
+                    <!-- Input Fields Container (No Form Tag, No Card Style) -->
+                    <div id="edit-app-submission-container" class="grid-layout"
+                        style="margin-top: 2rem; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: none;">
+
+                        <input type="hidden" id="edit-app-id">
+
+                        <div class="form-group">
+                            <label>App Name *</label>
+                            <input type="text" id="edit-app-name" required
+                                style="background: transparent; border: 1px solid var(--border); padding: 1rem; font-size: 1rem;">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Package Name *</label>
+                            <input type="text" id="edit-app-package-name" required
+                                style="background: transparent; border: 1px solid var(--border); padding: 1rem; font-size: 1rem;">
+                        </div>
+
+                        <div class="form-group">
+                            <label>App Version</label>
+                            <input type="text" id="edit-app-version" placeholder="1.0.0"
+                                style="background: transparent; border: 1px solid var(--border); padding: 1rem; font-size: 1rem;">
+                        </div>
+
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <label>Google Play Closed Testing Link *</label>
+                            <input type="url" id="edit-closed-testing-link"
+                                style="background: transparent; border: 1px solid var(--border); padding: 1rem; font-size: 1rem;"
+                                required>
+                        </div>
+
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <label>App Description</label>
+                            <textarea id="edit-app-description" rows="4"
+                                style="background: transparent; border: 1px solid var(--border); padding: 1rem; font-size: 1rem; width: 100%;"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Number of Testers Needed (1-20)</label>
+                            <input type="number" id="edit-testers-needed" min="1" max="20"
+                                style="background: transparent; border: 1px solid var(--border); padding: 1rem; font-size: 1rem;">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Testing Duration (days) (1-15)</label>
+                            <input type="number" id="edit-testing-duration" min="1" max="15"
+                                style="background: transparent; border: 1px solid var(--border); padding: 1rem; font-size: 1rem;">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Total Payment (₹)</label>
+                            <input type="number" id="edit-payment-amount" min="399"
+                                style="background: transparent; border: 1px solid var(--border); padding: 1rem; font-size: 1rem;">
+                        </div>
+
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <label>Testing Instructions</label>
+                            <textarea id="edit-testing-instructions" rows="4"
+                                style="background: transparent; border: 1px solid var(--border); padding: 1rem; font-size: 1rem; width: 100%;"></textarea>
+                        </div>
+                    </div>
+
+                    <div
+                        style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 3rem; padding-bottom: 2rem; align-items: center;">
+                        <div id="start-test-btn-container" style="margin-right: auto;">
+                            <!-- Start Test Button will be injected here -->
+                        </div>
+                        <button class="btn" style="padding: 1rem 2rem;" onclick="showAppList()">Cancel</button>
+                        <button class="btn btn-primary" style="padding: 1rem 2rem;"
+                            onclick="submitAppUpdate(event)">Save Changes</button>
+                    </div>
+                </div>
+                <div class="mobile-spacer"></div>
+            </section>
+
+            <!-- Developer Testing Dashboard (Read-Only View for Testing Apps) -->
+            <section id="developer-testing-dashboard" class="hidden fade-in"
+                style="height: 100%; padding-bottom: 3rem;">
+                <div style="width: 100%;">
+
+                    <!-- App Info Header -->
+                    <div class="glass-card" style="margin-top: 2rem; padding: 2rem;">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                            <h2 id="dashboard-app-name" style="margin: 0;">App Name</h2>
+                            <span id="dashboard-status-badge" class="status-badge status-testing">TESTING</span>
+                        </div>
+
+                        <!-- App Details Grid -->
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                            <div>
+                                <p class="text-dim" style="margin: 0; font-size: 0.85rem;">Package Name</p>
+                                <p id="dashboard-package-name" style="margin: 0.25rem 0 0 0; font-weight: 500;">-</p>
+                            </div>
+                            <div>
+                                <p class="text-dim" style="margin: 0; font-size: 0.85rem;">Version</p>
+                                <p id="dashboard-version" style="margin: 0.25rem 0 0 0; font-weight: 500;">-</p>
+                            </div>
+                            <div>
+                                <p class="text-dim" style="margin: 0; font-size: 0.85rem;">Testing Duration</p>
+                                <p id="dashboard-duration" style="margin: 0.25rem 0 0 0; font-weight: 500;">-</p>
+                            </div>
+                            <div>
+                                <p class="text-dim" style="margin: 0; font-size: 0.85rem;">Payment Amount</p>
+                                <p id="dashboard-payment"
+                                    style="margin: 0.25rem 0 0 0; font-weight: 500; color: var(--success);">-</p>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+                            <p class="text-dim" style="margin: 0 0 0.5rem 0; font-size: 0.85rem;">Description</p>
+                            <p id="dashboard-description" style="margin: 0;">-</p>
+                        </div>
+
+                        <!-- Testing Link -->
+                        <div style="margin-top: 1rem;">
+                            <p class="text-dim" style="margin: 0 0 0.5rem 0; font-size: 0.85rem;">Testing Link</p>
+                            <a id="dashboard-testing-link" href="#" target="_blank"
+                                style="color: var(--primary); text-decoration: none;">-</a>
+                        </div>
+                    </div>
+
+                    <!-- Testers Section -->
+                    <div class="glass-card" style="margin-top: 2rem; padding: 2rem;">
+                        <h3 style="margin: 0 0 1.5rem 0;">Opted-In Testers <span id="dashboard-tester-count"
+                                style="color: var(--text-dim);">(0)</span></h3>
+
+                        <div id="dashboard-testers-list" style="display: grid; gap: 1rem;">
+                            <!-- Testers will be injected here -->
+                        </div>
+                    </div>
+
+                    <!-- Bug Reports Section (Placeholder) -->
+                    <div class="glass-card" style="margin-top: 2rem; padding: 2rem;">
+                        <h3 style="margin: 0 0 1.5rem 0;">Bug Reports</h3>
+                        <p class="text-dim" style="text-align: center; padding: 2rem;">No bug reports yet. Bug reporting
+                            feature coming soon.</p>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div
+                        style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 3rem; padding-bottom: 2rem;">
+                        <button class="btn" style="padding: 1rem 2rem;" onclick="showAppList()">Back to Apps</button>
+                    </div>
+                </div>
+                <div class="mobile-spacer"></div>
+            </section>
+
+
+            <!-- App Detail View -->
+            <div id="app-detail-view" class="hidden">
+
+                <div id="app-detail-content">
+                    <!-- App details will be injected here -->
                 </div>
             </div>
-            
-            <div class="grid-layout">
-                <h3>Available Testing Missions</h3>
-                <div id="available-missions">
-                    <!-- Missions will be injected here -->
+
+
+            <!-- Add New App View (Full Page) -->
+            <section id="add-app-view" class="hidden fade-in" style="height: 100%; padding-bottom: 3rem;">
+                <div style="width: 100%;">
+
+
+                    <!-- Input Fields Container (No Form Tag, No Card Style) -->
+                    <div id="app-submission-container" class="grid-layout"
+                        style="margin-top: 2rem; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: none;">
+
+                        <div class="form-group">
+                            <label>App Name *</label>
+                            <input type="text" id="app-name" placeholder="My Awesome App" required
+                                style="background: transparent; border: 1px solid var(--border); padding: 1rem; font-size: 1rem;">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Package Name *</label>
+                            <input type="text" id="app-package-name" placeholder="com.example.myapp" required
+                                style="background: transparent; border: 1px solid var(--border); padding: 1rem; font-size: 1rem;">
+                        </div>
+
+                        <div class="form-group">
+                            <label>App Version</label>
+                            <input type="text" id="app-version" placeholder="1.0.0"
+                                style="background: transparent; border: 1px solid var(--border); padding: 1rem; font-size: 1rem;">
+                        </div>
+
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <label>Google Play Closed Testing Link *</label>
+                            <input type="url" id="closed-testing-link"
+                                style="background: transparent; border: 1px solid var(--border); padding: 1rem; font-size: 1rem;"
+                                placeholder="https://play.google.com/apps/internaltest/..." required>
+                            <small class="text-dim" style="display: block; margin-top: 0.5rem;">Get this link from
+                                Google Play Console → Testing → Closed Testing</small>
+                        </div>
+
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <label>App Description</label>
+                            <textarea id="app-description" rows="4"
+                                style="background: transparent; border: 1px solid var(--border); padding: 1rem; font-size: 1rem; width: 100%;"
+                                placeholder="Brief description of your app..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Number of Testers Needed (1-20)</label>
+                            <input type="number" id="testers-needed" value="20" min="1" max="20"
+                                style="background: transparent; border: 1px solid var(--border); padding: 1rem; font-size: 1rem;">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Testing Duration (days) (1-15)</label>
+                            <input type="number" id="testing-duration" value="15" min="1" max="15"
+                                style="background: transparent; border: 1px solid var(--border); padding: 1rem; font-size: 1rem;">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Total Cost (Minimum 399)</label>
+                            <input type="number" id="total-cost" value="399" min="399"
+                                style="background: transparent; border: 1px solid var(--border); padding: 1rem; font-size: 1rem;">
+                        </div>
+
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <label>Testing Instructions</label>
+                            <textarea id="testing-instructions" rows="4"
+                                style="background: transparent; border: 1px solid var(--border); padding: 1rem; font-size: 1rem; width: 100%;"
+                                placeholder="What should testers focus on? Any specific features to test?"></textarea>
+                        </div>
+                    </div>
+
+                    <div
+                        style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 3rem; padding-bottom: 2rem;">
+                        <button class="btn" style="padding: 1rem 2rem;" onclick="navigateTo('apps')">Cancel</button>
+                        <button class="btn btn-primary" style="padding: 1rem 2rem;" onclick="submitApp(event)">Submit
+                            App</button>
+                    </div>
                 </div>
+                <div class="mobile-spacer"></div>
+            </section>
+
+            <!-- Tester Dashboard -->
+            <section id="tester-dashboard" class="hidden fade-in">
+                <!-- My Tests Section -->
+                <div id="my-tests-view">
+
+                    <div class="glass-card" style="margin-top: 2rem; overflow-x: auto;">
+                        <table class="data-table" id="my-tests-table">
+                            <thead>
+                                <tr>
+                                    <th>App Name</th>
+                                    <th>Version</th>
+                                    <th>Developer</th>
+                                    <th>Status</th>
+                                    <th>Progress</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="my-tests-body">
+                                <!-- My opted-in tests will be injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Browse Apps Section -->
+                <div id="browse-apps-view" class="hidden" style="margin-top: 2rem;">
+
+                    <div class="glass-card" style="overflow-x: auto;">
+                        <table class="data-table" id="available-apps-table">
+                            <thead>
+                                <tr>
+                                    <th>App Name</th>
+                                    <th>Version</th>
+                                    <th>Developer</th>
+                                    <th>Reward</th>
+                                    <th>Slots</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="available-apps-body">
+                                <!-- Available apps will be injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="mobile-spacer"></div>
+            </section>
+
+            <!-- Tester App Detail View (Full Screen) -->
+            <section id="tester-app-detail-view" class="hidden fade-in" style="height: 100%; padding-bottom: 3rem;">
+                <div style="width: 100%;">
+
+                    <button class="btn btn-outline" onclick="showTesterDashboard()"
+                        style="margin-top: 1rem; margin-bottom: 1rem;">
+                        <i data-lucide="arrow-left"></i> Back to Dashboard
+                    </button>
+
+
+                    <!-- Read-Only Details Grid -->
+                    <div class="grid-layout"
+                        style="margin-top: 2rem; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: none;">
+
+                        <div class="form-group">
+                            <label>App Name</label>
+                            <input type="text" id="tester-detail-name" readonly
+                                style="background: transparent; border: 1px solid var(--border); padding: 1rem; font-size: 1rem; color: var(--text-dim);">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Version</label>
+                            <input type="text" id="tester-detail-version" readonly
+                                style="background: transparent; border: 1px solid var(--border); padding: 1rem; font-size: 1rem; color: var(--text-dim);">
+                        </div>
+
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <label>Description</label>
+                            <textarea id="tester-detail-description" rows="4" readonly
+                                style="background: transparent; border: 1px solid var(--border); padding: 1rem; font-size: 1rem; width: 100%; color: var(--text-dim);"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Reward per Tester</label>
+                            <input type="text" id="tester-detail-reward" readonly
+                                style="background: transparent; border: 1px solid var(--border); padding: 1rem; font-size: 1rem; color: var(--success); font-weight: bold;">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Testing Duration</label>
+                            <input type="text" id="tester-detail-duration" readonly
+                                style="background: transparent; border: 1px solid var(--border); padding: 1rem; font-size: 1rem; color: var(--text-dim);">
+                        </div>
+
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <label>Testing Instructions</label>
+                            <textarea id="tester-detail-instructions" rows="4" readonly
+                                style="background: transparent; border: 1px solid var(--border); padding: 1rem; font-size: 1rem; width: 100%; color: var(--text-dim);"></textarea>
+                        </div>
+
+                        <!-- Google Play Link (Only visible if opted in) -->
+                        <div class="form-group" id="tester-play-link-group" style="grid-column: 1 / -1;">
+                            <label>Google Play Link</label>
+                            <div
+                                style="display: flex; gap: 1rem; align-items: center; border: 1px solid var(--border); padding: 1rem; border-radius: 8px;">
+                                <i data-lucide="link" style="width: 20px; height: 20px; color: var(--primary);"></i>
+                                <a href="#" id="tester-detail-link" target="_blank"
+                                    style="color: var(--primary); text-decoration: none; word-break: break-all;">
+                                    https://play.google.com/...
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Action Button -->
+                    <div id="tester-action-container"
+                        style="display: flex; justify-content: flex-end; margin-top: 3rem; padding-bottom: 2rem;">
+                        <button id="tester-action-btn" class="btn btn-primary"
+                            style="padding: 1rem 3rem; font-size: 1.1rem;">
+                            Opt In
+                        </button>
+                    </div>
+                </div>
+                <div class="mobile-spacer"></div>
+            </section>
+
+            <!-- Placeholder Sections -->
+            <section id="analytics-section" class="hidden fade-in">
+                <div class="glass-card" style="margin-top: 2rem; padding: 3rem; text-align: center;">
+                    <p class="text-dim">Analytics coming soon...</p>
+                </div>
+            </section>
+
+            <section id="wallet-section" class="hidden fade-in">
+                <div class="glass-card" style="margin-top: 2rem; padding: 3rem; text-align: center;">
+                    <p class="text-dim">Wallet management coming soon...</p>
+                </div>
+            </section>
+
+            <section id="stats-section" class="hidden fade-in">
+                <div class="glass-card" style="margin-top: 2rem; padding: 3rem; text-align: center;">
+                    <p class="text-dim">Statistics coming soon...</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation (Mobile Only) -->
+        <nav class="bottom-nav" id="bottom-nav">
+            <!-- Developer Bottom Nav -->
+            <div id="dev-bottom-nav" class="bottom-nav-menu" style="display: none;">
+                <button class="bottom-nav-item active" onclick="navigateTo('my-apps')" data-page="my-apps">
+                    <i data-lucide="app-window"></i>
+                    <span>Apps</span>
+                </button>
+                <button class="bottom-nav-item" onclick="navigateTo('add-app')" data-page="add-app">
+                    <i data-lucide="plus-circle"></i>
+                    <span>Add</span>
+                </button>
+                <button class="bottom-nav-item" onclick="navigateTo('analytics')" data-page="analytics">
+                    <i data-lucide="bar-chart-2"></i>
+                    <span>Analytics</span>
+                </button>
+                <button class="bottom-nav-item" onclick="navigateTo('wallet')" data-page="wallet">
+                    <i data-lucide="wallet"></i>
+                    <span>Wallet</span>
+                </button>
             </div>
-        </section>
+
+            <!-- Tester Bottom Nav -->
+            <div id="tester-bottom-nav" class="bottom-nav-menu" style="display: none;">
+                <button class="bottom-nav-item active" onclick="navigateTo('my-tests')" data-page="my-tests">
+                    <i data-lucide="clipboard-check"></i>
+                    <span>Tests</span>
+                </button>
+                <button class="bottom-nav-item" onclick="navigateTo('browse-apps')" data-page="browse-apps">
+                    <i data-lucide="search"></i>
+                    <span>Browse</span>
+                </button>
+                <button class="bottom-nav-item" onclick="navigateTo('stats')" data-page="stats">
+                    <i data-lucide="trending-up"></i>
+                    <span>Stats</span>
+                </button>
+                <button class="bottom-nav-item" onclick="navigateTo('wallet')" data-page="wallet">
+                    <i data-lucide="wallet"></i>
+                    <span>Wallet</span>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Auth Modal (Login/Signup) -->
+    <div id="auth-modal" class="modal hidden">
+        <div class="glass-card modal-content">
+            <div class="modal-header">
+                <h2 id="auth-title">Login</h2>
+                <button class="close-btn" onclick="closeAuthModal()">
+                    <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+                </button>
+            </div>
+
+            <form id="auth-form" onsubmit="handleAuth(event)" style="padding: 1.5rem;">
+                <div class="form-group" id="name-group" style="display: none;">
+                    <label>Display Name</label>
+                    <input type="text" id="auth-name" placeholder="John Doe">
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="auth-email" placeholder="you@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="auth-password" placeholder="••••••••" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 1rem;">
+                    <span id="auth-btn-text">Login</span>
+                </button>
+
+                <p class="text-dim" style="text-align: center; font-size: 0.875rem;">
+                    <span id="auth-toggle-text">Don't have an account?</span>
+                    <a href="#" onclick="toggleAuthMode(event)"
+                        style="color: var(--primary); font-weight: 500; margin-left: 0.25rem;">Sign Up</a>
+                </p>
+            </form>
+            <div class="mobile-spacer"></div>
+        </div>
+    </div>
+
+    <!-- App Submission Modal -->
+    <div id="app-modal" class="modal hidden">
+        <div class="glass-card modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h2>Submit New App</h2>
+                <button class="close-btn" onclick="closeAppForm()">
+                    <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+                </button>
+            </div>
+
+            <form id="app-submission-form" onsubmit="submitApp(event)" style="padding: 1.5rem;">
+                <div class="form-group">
+                    <label>App Name *</label>
+                    <input type="text" id="app-name" placeholder="My Awesome App" required>
+                </div>
+
+                <div class="form-group">
+                    <label>App Version</label>
+                    <input type="text" id="app-version" placeholder="1.0.0">
+                </div>
+
+                <div class="form-group">
+                    <label>App Description</label>
+                    <textarea id="app-description" rows="3" placeholder="Brief description of your app..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Google Play Closed Testing Link *</label>
+                    <input type="url" id="closed-testing-link"
+                        placeholder="https://play.google.com/apps/internaltest/..." required>
+                </div>
+
+                <div class="form-group">
+                    <label>App Icon URL (optional)</label>
+                    <input type="url" id="app-icon" placeholder="https://example.com/icon.png">
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label>Payment Amount (₹)</label>
+                        <input type="number" id="payment-amount" value="399" min="100">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Max Testers</label>
+                        <input type="number" id="max-testers" value="20" min="1" max="100">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <p class="text-dim" style="font-size: 0.75rem; flex: 1;">
+                        💡 After submission, testers can opt-in during the opt-in period
+                    </p>
+                    <button type="submit" class="btn btn-primary">Submit App</button>
+                </div>
+            </form>
+            <div class="mobile-spacer"></div>
+        </div>
+    </div>
+
+    <!-- Custom Dialog Modal -->
+    <div id="custom-dialog" class="modal hidden">
+        <div class="glass-card modal-content" style="max-width: 450px;">
+            <div class="modal-header">
+                <h3 id="dialog-title" style="margin: 0;">Notification</h3>
+            </div>
+            <div style="padding: 1.5rem;">
+                <p id="dialog-message" style="margin: 0; line-height: 1.6;"></p>
+            </div>
+            <div style="padding: 0 1.5rem 1.5rem; display: flex; gap: 0.75rem; justify-content: flex-end;">
+                <button id="dialog-cancel-btn" class="btn" onclick="closeCustomDialog(false)"
+                    style="display: none;">Cancel</button>
+                <button id="dialog-confirm-btn" class="btn btn-primary" onclick="closeCustomDialog(true)">OK</button>
+            </div>
+        </div>
     </div>
 
     <script src="main.js"></script>
@@ -77,4 +720,5 @@
         lucide.createIcons();
     </script>
 </body>
+
 </html>

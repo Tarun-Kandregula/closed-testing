@@ -4,21 +4,34 @@ const appSchema = new mongoose.Schema({
     developerId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     appName: { type: String, required: true },
     packageName: { type: String, required: true },
+    appVersion: String,
     appIcon: String,
-    playStoreLink: String,
-    instructions: String,
-    status: { type: String, enum: ['pending', 'testing', 'completed'], default: 'pending' },
-    currentTesters: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-    dailyActivity: [{
-        testerId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-        date: { type: Date, default: Date.now },
-        durationMinutes: Number
-    }],
-    dayCount: { type: Number, default: 0 }, // Tracks 0 to 14 days
-    reportsSent: {
-        day4: { type: Boolean, default: false },
-        day8: { type: Boolean, default: false }
+    appDescription: String,
+    closedTestingLink: String,
+
+    // Payment & Testers
+    paymentAmount: { type: Number, default: 399 },
+    maxTesters: { type: Number, default: 20 },
+    durationDays: { type: Number, default: 15 },
+
+    // Status: opt_in_period → ready_to_start → testing → completed
+    status: {
+        type: String,
+        enum: ['opt_in_period', 'ready_to_start', 'testing', 'completed', 'cancelled'],
+        default: 'opt_in_period'
     },
+
+    // Opted-in testers
+    optedInTesters: [{
+        testerId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+        optedInAt: { type: Date, default: Date.now },
+        installedAt: Date,
+        daysCompleted: { type: Number, default: 0 },
+        lastCheckIn: Date,
+        completed: { type: Boolean, default: false }
+    }],
+
+    startedAt: Date,
     createdAt: { type: Date, default: Date.now }
 });
 
